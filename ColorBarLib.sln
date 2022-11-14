@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorBarLib", "ColorBarLib\ColorBarLib.csproj", "{8EB131B8-EBF4-4404-BA7B-16AEDAEEDBBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7F0AC4F-9DBF-43B8-B353-ADBD8FB86548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7F0AC4F-9DBF-43B8-B353-ADBD8FB86548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7F0AC4F-9DBF-43B8-B353-ADBD8FB86548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7F0AC4F-9DBF-43B8-B353-ADBD8FB86548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29515A39-04F4-49BB-ADDE-1FB5E1F15CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29515A39-04F4-49BB-ADDE-1FB5E1F15CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29515A39-04F4-49BB-ADDE-1FB5E1F15CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29515A39-04F4-49BB-ADDE-1FB5E1F15CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB131B8-EBF4-4404-BA7B-16AEDAEEDBBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB131B8-EBF4-4404-BA7B-16AEDAEEDBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB131B8-EBF4-4404-BA7B-16AEDAEEDBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB131B8-EBF4-4404-BA7B-16AEDAEEDBBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CBDF0F-FB15-4332-A5FF-0983DA1F1B2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CBDF0F-FB15-4332-A5FF-0983DA1F1B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CBDF0F-FB15-4332-A5FF-0983DA1F1B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CBDF0F-FB15-4332-A5FF-0983DA1F1B2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C222DF3-F957-4043-953F-775A380EC46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C222DF3-F957-4043-953F-775A380EC46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C222DF3-F957-4043-953F-775A380EC46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C222DF3-F957-4043-953F-775A380EC46F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F929DAF4-3709-49D7-B01B-9956F01BC744} = {81700E39-D258-418C-A608-3B2A74F1AF0B}
+		{A7F0AC4F-9DBF-43B8-B353-ADBD8FB86548} = {F929DAF4-3709-49D7-B01B-9956F01BC744}
+		{E80C8719-0EC6-4861-AAC1-D3955A597C6E} = {81700E39-D258-418C-A608-3B2A74F1AF0B}
+		{29515A39-04F4-49BB-ADDE-1FB5E1F15CC7} = {E80C8719-0EC6-4861-AAC1-D3955A597C6E}
+		{31CBDF0F-FB15-4332-A5FF-0983DA1F1B2A} = {81700E39-D258-418C-A608-3B2A74F1AF0B}
+		{2C222DF3-F957-4043-953F-775A380EC46F} = {81700E39-D258-418C-A608-3B2A74F1AF0B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FB7537E-6591-4EFC-81F6-A664FB60CECC}
+	EndGlobalSection
+EndGlobal
