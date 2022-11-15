@@ -4,6 +4,7 @@ using Prism.Regions;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
+using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Windows.Media.Imaging;
 using Unity;
@@ -92,8 +93,8 @@ namespace Example.Modules.ModuleName.ViewModels
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
             }
         }
 
