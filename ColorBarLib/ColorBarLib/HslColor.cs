@@ -63,15 +63,22 @@ namespace ColorBarLib
             List<HslColor> colorHslList = new();
             foreach (var color in rgbList)
             {
+                var trimmedColor = color.Trim();
+                if (string.IsNullOrWhiteSpace(trimmedColor) || trimmedColor.Length < 6 || 7 < trimmedColor.Length)
+                {
+                    // RGBが空白 または、RGB(#RGB) の桁数ではない場合処理しない
+                    continue;
+                }
+
                 var startIndex = 0;
-                if (color.StartsWith("#"))
+                if (trimmedColor.StartsWith("#"))
                 {
                     startIndex = 1;
                 }
 
-                var red16 = color.Substring(startIndex, 2);
-                var green16 = color.Substring(startIndex + 2, 2);
-                var blue16 = color.Substring(startIndex + 4, 2);
+                var red16 = trimmedColor.Substring(startIndex, 2);
+                var green16 = trimmedColor.Substring(startIndex + 2, 2);
+                var blue16 = trimmedColor.Substring(startIndex + 4, 2);
 
                 colorHslList.Add(FromRgb(Convert.ToInt32(red16, 16), Convert.ToInt32(green16, 16), Convert.ToInt32(blue16, 16)));
             }
@@ -171,7 +178,7 @@ namespace ColorBarLib
             float b1 = l;
 
             if (s != 0)
-            { 
+            {
                 float h = hsl.H / 60f;
                 int i = (int)Math.Floor(h);
                 float f = h - i;

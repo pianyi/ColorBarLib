@@ -15,33 +15,18 @@ namespace ColorBarLib
         private readonly List<Color> _colorPattern = new();
 
         /// <summary>
-        /// 本カラーパレットの最小値
+        /// コンストラクタ
         /// </summary>
-        public double MinValue { get; private set; }
-        /// <summary>
-        /// 本カラーパレットの最大値
-        /// </summary>
-        public double MaxValue { get; private set; }
-
-        /// <summary>
-        /// コンストラクタ(グレースケールのカラーパレット作成)
-        /// </summary>
-        /// <param name="minValue">作成するカラーパレットの最小値</param>
-        /// <param name="maxValue">作成するカラーパレットの最大値</param>
-        public ColorPalette(double minValue, double maxValue)
+        public ColorPalette()
         {
-            MinValue= minValue;
-            MaxValue= maxValue;
         }
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="rgbList">#RRGGBB で指定された色のリスト(配列0の場合はグレースケールとなります)</param>
-        /// <param name="minValue">作成するカラーパレットの最小値</param>
-        /// <param name="maxValue">作成するカラーパレットの最大値</param>
-        public ColorPalette(double minValue, double maxValue, List<string> rgbList)
-            : this(minValue, maxValue)
+        public ColorPalette(List<string> rgbList)
+            : this()
         {
             // カラーパレットの作成
             CreateColorBarData(rgbList);
@@ -88,15 +73,15 @@ namespace ColorBarLib
                         stepSaturation = Math.Abs(nextHsl.S - nowHsl.S) / area;
                         stepLightness = Math.Abs(nextHsl.L - nowHsl.L) / area;
 
-                        if (270 < nowHsl.H && nextHsl.H < 50)
+                        if (270 < nowHsl.H && nextHsl.H < 90)
                         {
                             // 色相は0～359の円情報のため、0＝360 となる。
-                            // 今が「270～259」で、次が「0～50」 の場合、境界を越えたと判断し、再計算する
+                            // 今が「270～259」で、次が「0～90」 の場合、境界を越えたと判断し、再計算する
                             stepHue = (360 + nextHsl.H - nowHsl.H) / area;
                         }
-                        else if (nowHsl.H < 50 && 270 < nextHsl.H)
+                        else if (nowHsl.H < 90 && 270 < nextHsl.H)
                         {
-                            // 今が「50～0」で、次が「359～270」 の場合、境界を越えたと判断し、再計算する
+                            // 今が「90～0」で、次が「359～270」 の場合、境界を越えたと判断し、再計算する
                             stepHue = (nextHsl.H - (nowHsl.H + 360)) / area;
                         }
                         else
@@ -187,18 +172,20 @@ namespace ColorBarLib
         /// 引数に対応したColorを取得します
         /// </summary>
         /// <param name="value">検索する値</param>
+        /// <param name="min">検索値の最小値</param>
+        /// <param name="max">検索値の最大値</param>
         /// <returns>該当する色</returns>
-        public Color GetRGBColor(double value)
+        public Color GetRGBColor(double value, double min, double max)
         {
             Color result;
 
             if (1 < _colorPattern.Count)
             {
-                result = GetRGBScaleData(value);
+                result = GetRGBScaleData(value, min, max);
             }
             else
             {
-                result = GetGrayScaleData(value);
+                result = GetGrayScaleData(value, min, max);
             }
 
             return result;
@@ -207,22 +194,24 @@ namespace ColorBarLib
         /// <summary>
         /// 値からカラー色を取得します
         /// </summary>
-        /// <param name="value">判定値</param>
+        /// <param name="value">検索する値</param>
+        /// <param name="min">検索値の最小値</param>
+        /// <param name="max">検索値の最大値</param>
         /// <returns>判定値に該当する色（カラー）</returns>
-        private Color GetRGBScaleData(double value)
+        private Color GetRGBScaleData(double value, double min, double max)
         {
             var calValue = value;
-            if (calValue < MinValue)
+            if (calValue < min)
             {
-                calValue = MinValue;
+                calValue = min;
             }
-            if (MaxValue < calValue)
+            if (max < calValue)
             {
-                calValue = MaxValue;
+                calValue = max;
             }
 
             // 値を 指定範囲内に変換する(最後は配列の個数なので-1 した値にしないと範囲外になる)
-            var index = (int)(0.0 - ((calValue - MinValue) / (MaxValue - MinValue)) * (0.0 - (_colorPattern.Count - 1)));
+            var index = (int)(0.0 - ((calValue - min) / (max - min)) * (0.0 - (_colorPattern.Count - 1)));
 
             return _colorPattern[index];
         }
@@ -230,22 +219,24 @@ namespace ColorBarLib
         /// <summary>
         /// 値からグレースケール色を取得します
         /// </summary>
-        /// <param name="value">判定値</param>
+        /// <param name="value">検索する値</param>
+        /// <param name="min">検索値の最小値</param>
+        /// <param name="max">検索値の最大値</param>
         /// <returns>判定値に該当する色（グレースケール）</returns>
-        private Color GetGrayScaleData(double value)
+        private Color GetGrayScaleData(double value, double min, double max)
         {
             var calValue = value;
-            if (calValue < MinValue)
+            if (calValue < min)
             {
-                calValue = MinValue;
+                calValue = min;
             }
-            if (MaxValue < calValue)
+            if (max < calValue)
             {
-                calValue = MaxValue;
+                calValue = max;
             }
 
             // 値を 0～1に変換する
-            calValue = 0.0 - ((calValue - MinValue) / (MaxValue - MinValue)) * (0.0 - 1.0);
+            calValue = 0.0 - ((calValue - min) / (max - min)) * (0.0 - 1.0);
 
             var brightness = (int)Math.Round(calValue * 255.0, MidpointRounding.AwayFromZero);
 
