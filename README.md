@@ -15,9 +15,37 @@ C# で カラーバーを作成するためのカラーパレットを作成す�
 - ColorBarLib.csproj を自分の開発環境に取り込む
 - 別プロジェクトからプロジェクト参照する
 
+## 使い方
+C#:グレースケール
+```
+colorPalette = new()
+{
+    MinValue = 0,
+    MaxValue = 255
+};
+// 上記指定したプロパティ値を利用
+Color color = colorPalette.GetRGBColor(value);
+// または上記指定したプロパティ値を無視し、最大値・最小値を指定
+// Color color = colorPalette.GetRGBColor(value, minValue, maxValue);
+```
+C#:カラー
+```
+ColorPalette colorPalette = new("#FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000")
+{
+    MinValue = 0,
+    MaxValue = 255
+};
+// 上記指定したプロパティ値を利用
+Color color = colorPalette.GetRGBColor(value);
+// または上記指定したプロパティ値を無視し、最大値・最小値を指定
+// Color color = colorPalette.GetRGBColor(value, minValue, maxValue);
+```
+
 # 出典
-RGB ←→ HSL 変換機能は Dobon.net の変換ソースを利用しています。
+* RGB ←→ HSL 変換機能は 「Dobon.net」さんの変換ソースを利用しています。
 https://dobon.net/vb/dotnet/graphics/hsv.html
+* サンプル画像のイメージは「いらすとや」さんの「ねこ」を元に作成しています。
+https://www.irasutoya.com/2019/06/blog-post_83.html
 
 # License(ライセンス)
 [MIT license](https://en.wikipedia.org/wiki/MIT_License).
