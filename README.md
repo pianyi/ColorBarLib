@@ -41,6 +41,14 @@ Color color = colorPalette.GetRGBColor(value);
 // Color color = colorPalette.GetRGBColor(value, minValue, maxValue);
 ```
 
+## サンプル画像
+ColorBarLib\SampleFile\neco.csv を利用
+
+![ねこ_1](https://user-images.githubusercontent.com/4666260/203235016-0f86ad61-db6c-4e03-901f-f9b2ef29fb9f.png)
+![ねこ_2](https://user-images.githubusercontent.com/4666260/203235026-e8dc431b-c584-4c95-b0b5-94e6c6563057.png)
+![ねこ_3](https://user-images.githubusercontent.com/4666260/203235031-9ffc65ba-4020-49b4-9b07-f413a7fb4b3a.png)
+![ねこ_4](https://user-images.githubusercontent.com/4666260/203235041-bae01fef-3c0d-4cbb-8e74-c2f08cac0be6.png)
+
 # 出典
 * RGB ←→ HSL 変換機能は 「Dobon.net」さんの変換ソースを利用しています。
 https://dobon.net/vb/dotnet/graphics/hsv.html
@@ -49,6 +57,7 @@ https://www.irasutoya.com/2019/06/blog-post_83.html
 
 # License(ライセンス)
 [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+
 日本語：(https://licenses.opensource.jp/MIT/MIT.html)
 
 # その他
