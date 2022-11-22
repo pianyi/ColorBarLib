@@ -5,7 +5,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:core="clr-namespace:Example.Core;assembly=Example.Core"
         Title="{Binding Title}" 
-        Height="350" Width="625" MinHeight="200" MinWidth="375" 
+        Height="350" Width="625" MinHeight="200" MinWidth="650" 
         WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" >
     <Grid>
         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />

@@ -4,8 +4,10 @@
              xmlns:local="clr-namespace:Example.Modules.ModuleName.Views"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -25,16 +27,27 @@
         </DockPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-            <TextBlock Text="Min Value:" Margin="5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="Min:" Margin="5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding MinValue.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" VerticalAlignment="Center" Foreground="White" Width="50"/>
 
-            <TextBlock Text="Max Value:" Margin="5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="Max:" Margin="5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding MaxValue.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" VerticalAlignment="Center" Foreground="White" Width="50"/>
 
             <TextBlock Text="Ticks:" Margin="5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding TicksValue.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" VerticalAlignment="Center" Foreground="White" Width="50"/>
+
+            <TextBlock Text="DataRange:" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding SampleData.Value}" Margin="5" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Content="Create random data" Command="{Binding ChangeSampleCommand}" Margin="5"/>
         </StackPanel>
 
-        <Image Grid.Row="2" Grid.Column="0" Source="{Binding Picture.Value}"/>
+        <DockPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock Text="CSV file path" Margin="5" Foreground="White" DockPanel.Dock="Left" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Content="Read" Command="{Binding ChangeCSVCommand}" Margin="5" DockPanel.Dock="Right" />
+            <Button Content="Browse" Command="{Binding BrowseCommand}" Margin="5" DockPanel.Dock="Right" />
+            <TextBox Text="{Binding CsvFilePath.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" Foreground="White" VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <Image Grid.Row="3" Grid.Column="0" Source="{Binding Picture.Value}"/>
     </Grid>
 </UserControl>

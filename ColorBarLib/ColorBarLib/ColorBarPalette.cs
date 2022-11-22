@@ -5,9 +5,9 @@ using System.Drawing;
 namespace ColorBarLib
 {
     /// <summary>
-    /// カラーパレットの作成・取得を行う
+    /// カラーバーパレットの作成・取得を行う
     /// </summary>
-    public class ColorPalette
+    public class ColorBarPalette
     {
         /// <summary>
         /// カラー表示時のカラーパターン
@@ -15,9 +15,19 @@ namespace ColorBarLib
         private readonly List<Color> _colorPattern = new();
 
         /// <summary>
+        /// カラーバーパレットで利用する最小値を設定します
+        /// </summary>
+        public double MinValue { get; set; } = 0;
+
+        /// <summary>
+        /// カラーバーパレットで利用する最大値を設定します
+        /// </summary>
+        public double MaxValue { get; set; } = 100;
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ColorPalette()
+        public ColorBarPalette()
         {
         }
 
@@ -25,7 +35,7 @@ namespace ColorBarLib
         /// コンストラクタ
         /// </summary>
         /// <param name="rgbList">#RRGGBB で指定された色のリスト(配列0の場合はグレースケールとなります)</param>
-        public ColorPalette(List<string> rgbList)
+        public ColorBarPalette(List<string> rgbList)
             : this()
         {
             // カラーパレットの作成
@@ -59,7 +69,7 @@ namespace ColorBarLib
             float saturation = colorHslList[0].S;
             float lightness = colorHslList[0].L;
 
-            // HSL 方式に合わせて0～359回ループする、 
+            // HSL 方式に合わせて0～359回ループする。
             for (int i = 0; i < 360; i++)
             {
                 if (area * areaIndex < i)
@@ -76,7 +86,7 @@ namespace ColorBarLib
                         if (270 < nowHsl.H && nextHsl.H < 90)
                         {
                             // 色相は0～359の円情報のため、0＝360 となる。
-                            // 今が「270～259」で、次が「0～90」 の場合、境界を越えたと判断し、再計算する
+                            // 今が「270～359」で、次が「0～90」 の場合、境界を越えたと判断し、再計算する
                             stepHue = (360 + nextHsl.H - nowHsl.H) / area;
                         }
                         else if (nowHsl.H < 90 && 270 < nextHsl.H)
@@ -166,6 +176,16 @@ namespace ColorBarLib
 
                 _colorPattern.Add(nextColor);
             }
+        }
+
+        /// <summary>
+        /// プロパティに設定されている最大値・最小値の範囲を元に、引数に対応したColorを取得します
+        /// </summary>
+        /// <param name="value">検索する値</param>
+        /// <returns>該当する色</returns>
+        public Color GetRGBColor(double value)
+        {
+            return GetRGBColor(value, MinValue, MaxValue);
         }
 
         /// <summary>
