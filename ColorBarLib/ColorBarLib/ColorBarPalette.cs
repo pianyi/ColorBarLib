@@ -17,12 +17,17 @@ namespace ColorBarLib
         /// <summary>
         /// カラーバーパレットで利用する最小値を設定します
         /// </summary>
-        public double MinValue { get; set; } = 0;
+        public double MinValue { get; set; } = 0.0;
 
         /// <summary>
         /// カラーバーパレットで利用する最大値を設定します
         /// </summary>
-        public double MaxValue { get; set; } = 100;
+        public double MaxValue { get; set; } = 100.0;
+
+        /// <summary>
+        /// ガンマ補正値（色未指定時に利用）
+        /// </summary>
+        public double Gamma { get; set; } = 1.5;
 
         /// <summary>
         /// コンストラクタ
@@ -258,7 +263,17 @@ namespace ColorBarLib
             // 値を 0～1に変換する
             calValue = 0.0 - ((calValue - min) / (max - min)) * (0.0 - 1.0);
 
-            var brightness = (int)Math.Round(calValue * 255.0, MidpointRounding.AwayFromZero);
+            double brightness;
+            if (Gamma == 1.0)
+            {
+                // ガンマ補正無しの計算
+                brightness = (int)Math.Round(calValue * 255.0, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                // ガンマ補正有りの計算(Gnuplotでは1.5で補正しているVer5.4)
+                brightness = (int)Math.Round(255.0 * Math.Pow(calValue, 1.0 / Gamma), MidpointRounding.AwayFromZero);
+            }
 
             return Color.FromArgb(Convert.ToByte(brightness), Convert.ToByte(brightness), Convert.ToByte(brightness));
         }
