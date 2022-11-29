@@ -1,5 +1,4 @@
 ﻿using Prism.Regions;
-using PrismExpansion.Mvvm;
 using System;
 
 namespace Example.Core.Mvvm

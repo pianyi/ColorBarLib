@@ -3,7 +3,7 @@ using Prism.Navigation;
 using System;
 using System.Reactive.Disposables;
 
-namespace PrismExpansion.Mvvm
+namespace Example.Core.Mvvm
 {
     /// <summary>
     /// オブジェクトの破棄機能を追加したBindableBaseクラス
