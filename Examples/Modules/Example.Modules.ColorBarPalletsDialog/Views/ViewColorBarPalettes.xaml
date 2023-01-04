@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Example.Modules.ColorBarPalettesDialog.Views.ViewColorBarPalettes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Example.Modules.ColorBarPalettesDialog.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterOwner"/>
+            <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="ShowInTaskbar" Value="True"/>
+            <Setter Property="Width" Value="550"/>
+            <Setter Property="Height" Value="350"/>
+            <Setter Property="SizeToContent" Value="Manual"/>
+            <Setter Property="Title" Value="{Binding Title}"/>
+        </Style>
+    </prism:Dialog.WindowStyle>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Themes/ColorPicker/ColorCanvas.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <mah:ColorCanvas Grid.Row="0" Grid.Column="0"
+                         SelectedColor="{Binding ColorString.Value}"
+                         DefaultColor="#FF0000"
+                         LabelBlueChannel="Blue"
+                         LabelGreenChannel="Green"
+                         LabelRedChannel="Red"/>
+
+        <!--下部ボタン部-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Content="Append" Margin="5,5,5,5"
+                    Command="{Binding AppendCommand}"/>
+
+            <Button Grid.Row="0" Grid.Column="1" Content="Clear" Margin="5,5,5,5"
+                    Command="{Binding ClearCommand}"/>
+
+            <Button Grid.Row="0" Grid.Column="3" Content="Close" Margin="5,5,5,5"
+                    Command="{Binding CloseCommand}"/>
+        </Grid>
+
+    </Grid>
+
+</UserControl>

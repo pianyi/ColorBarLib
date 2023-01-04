@@ -1,10 +1,13 @@
-﻿using Example.Modules.ModuleName;
+﻿using ColorBarPalettesDialog;
+using Example.Modules.ModuleName;
 using Example.Services;
 using Example.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 using Prism.Unity;
+using PrismExpansion.Services.Dialogs;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -24,12 +27,17 @@ namespace Example
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDialogWindow<MetroDialogWindow>();
+
             containerRegistry.RegisterSingleton<CreateImageService, CreateImageService>();
+
+            containerRegistry.RegisterSingleton<IDialogService, CustomizeDialogService>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<ModuleNameModule>();
+            moduleCatalog.AddModule<ColorBarPalettesDialogModule>();
         }
 
         private void ApplicationDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
