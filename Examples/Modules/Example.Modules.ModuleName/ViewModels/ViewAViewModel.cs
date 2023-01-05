@@ -220,13 +220,14 @@ namespace Example.Modules.ModuleName.ViewModels
             try
             {
                 var mainWindow = Application.Current.MainWindow;
+
                 // ダイアログに渡すパラメータ
                 var param = new DialogParameters()
                 {
                     { DialogParams.Key,   nameof(ColorBarPalettesDialog.Views.ViewColorBarPalettes) },
                     { DialogParams.Title, "Append Colors" },
                     { DialogParams.Top,   mainWindow.Top },
-                    { DialogParams.Left,  mainWindow.Left +  mainWindow.Width - 100} // ボタンが隠れるぐらい左に移動する
+                    { DialogParams.Left,  mainWindow.Left + mainWindow.Width}
                 };
 
                 // 押下されたボタン区分

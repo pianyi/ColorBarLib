@@ -9,6 +9,7 @@ using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
 using System.Diagnostics;
+using System.Windows;
 using Unity;
 
 namespace Example.Modules.ColorBarPalettesDialog.ViewModels
@@ -115,12 +116,22 @@ namespace Example.Modules.ColorBarPalettesDialog.ViewModels
                     // タイトル設定
                     Title = title;
                 }
-                if (parameters.TryGetValue(DialogParams.Top, out int top))
+                if (parameters.TryGetValue(DialogParams.Top, out double top))
                 {
+                    if (SystemParameters.WorkArea.Bottom < top)
+                    {
+                        // 画面外に表示されるが場合、メイン画面の中央に変更する
+                        top = SystemParameters.FullPrimaryScreenHeight / 2;
+                    }
                     Top = top;
                 }
-                if (parameters.TryGetValue(DialogParams.Left, out int left))
+                if (parameters.TryGetValue(DialogParams.Left, out double left))
                 {
+                    if (SystemParameters.WorkArea.Right < left)
+                    {
+                        // 画面外に表示されるが場合、メイン画面の中央に変更する
+                        left = SystemParameters.FullPrimaryScreenWidth / 2;
+                    }
                     Left = left;
                 }
             }
