@@ -12,8 +12,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Core", "Examples\Example.Core\Example.Core.csproj", "{15C9DDC2-E3EC-4A96-BD3A-45C998C7F0DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Examples\Example\Example.csproj", "{FF119772-AE04-49F3-B41F-99607E3A1930}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C} = {BF7EC013-BA24-4FA0-9E05-86FB3C07C38C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Modules.ModuleName", "Examples\Modules\Example.Modules.ModuleName\Example.Modules.ModuleName.csproj", "{FFD64A52-AF17-4B65-AC61-40A891F74693}"
+	ProjectSection(ProjectDependencies) = postProject
+		{03F757C3-832E-4E55-9DB3-8E0590442CBF} = {03F757C3-832E-4E55-9DB3-8E0590442CBF}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismExpansion", "Examples\PrismExpansion\PrismExpansion.csproj", "{03F757C3-832E-4E55-9DB3-8E0590442CBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Modules.ColorBarPalettesDialog", "Examples\Modules\Example.Modules.ColorBarPalletsDialog\Example.Modules.ColorBarPalettesDialog.csproj", "{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +51,14 @@ Global
 		{FFD64A52-AF17-4B65-AC61-40A891F74693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFD64A52-AF17-4B65-AC61-40A891F74693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFD64A52-AF17-4B65-AC61-40A891F74693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F757C3-832E-4E55-9DB3-8E0590442CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F757C3-832E-4E55-9DB3-8E0590442CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F757C3-832E-4E55-9DB3-8E0590442CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F757C3-832E-4E55-9DB3-8E0590442CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +68,8 @@ Global
 		{15C9DDC2-E3EC-4A96-BD3A-45C998C7F0DD} = {0EA1BC66-680D-4E60-A01F-24912A82B386}
 		{FF119772-AE04-49F3-B41F-99607E3A1930} = {0EA1BC66-680D-4E60-A01F-24912A82B386}
 		{FFD64A52-AF17-4B65-AC61-40A891F74693} = {0EA1BC66-680D-4E60-A01F-24912A82B386}
+		{03F757C3-832E-4E55-9DB3-8E0590442CBF} = {0EA1BC66-680D-4E60-A01F-24912A82B386}
+		{BF7EC013-BA24-4FA0-9E05-86FB3C07C38C} = {0EA1BC66-680D-4E60-A01F-24912A82B386}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FB7537E-6591-4EFC-81F6-A664FB60CECC}

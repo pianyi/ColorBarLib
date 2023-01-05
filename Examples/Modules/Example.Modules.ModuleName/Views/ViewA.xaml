@@ -1,7 +1,9 @@
-﻿<UserControl x:Class="Example.Modules.ModuleName.Views.ViewA"
+﻿<UserControl 
+             x:Class="Example.Modules.ModuleName.Views.ViewA"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Example.Modules.ModuleName.Views"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
@@ -21,8 +23,10 @@
                        ToolTip="#RRGGBB,#RRGGBB, … . Empty is Grayscale." />
             <TextBlock Text="Lower Side" Margin="5" Foreground="White" DockPanel.Dock="Left" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <TextBlock Text="Upper Side" Margin="5" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Content="Append color" DockPanel.Dock="Right" Command="{Binding SelectColorCommand}" Margin="5"/>
 
+            <TextBlock Text="Upper Side" Margin="5" Foreground="White" DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            
             <TextBox Text="{Binding RGBStringList.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" VerticalAlignment="Center" Foreground="White"/>
         </DockPanel>
 

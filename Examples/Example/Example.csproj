@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example.Core\Example.Core.csproj" />
+    <ProjectReference Include="..\Modules\Example.Modules.ColorBarPalletsDialog\Example.Modules.ColorBarPalettesDialog.csproj" />
     <ProjectReference Include="..\Modules\Example.Modules.ModuleName\Example.Modules.ModuleName.csproj" />
     <ProjectReference Include="..\Services\Example.Services\Example.Services.csproj" />
   </ItemGroup>
