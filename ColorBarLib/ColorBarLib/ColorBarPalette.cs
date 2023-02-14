@@ -81,7 +81,7 @@ namespace ColorBarLib
             float lightness = colorHslList[0].L;
 
             // HSL 方式に合わせて0～359回ループする。
-            for (int i = 0; i < 360; i++)
+            for (int i = 0; i < 361; i++)
             {
                 if (area * areaIndex < i)
                 {
@@ -242,7 +242,7 @@ namespace ColorBarLib
             }
 
             // 値を 指定範囲内に変換する(最後は配列の個数なので-1 した値にしないと範囲外になる)
-            var index = (int)(0.0 - ((calValue - min) / (max - min)) * (0.0 - (_colorPattern.Count - 1)));
+            var index = (int)Math.Round(0.0 - ((calValue - min) / (max - min)) * (0.0 - (_colorPattern.Count - 1)), MidpointRounding.AwayFromZero);
 
             return _colorPattern[index];
         }

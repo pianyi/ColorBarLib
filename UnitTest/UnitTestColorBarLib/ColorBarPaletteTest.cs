@@ -94,8 +94,9 @@ namespace UnitTestColorBarLib
 
             Assert.NotNull(lib);
 
-            Color color = lib.GetRGBColor(10);
-            Assert.Equal(Color.FromArgb(25, 25, 25), color);
+            Assert.Equal(Color.FromArgb(0, 0, 0), lib.GetRGBColor(lib.MinValue));
+            Assert.Equal(Color.FromArgb(26, 26, 26), lib.GetRGBColor(10));
+            Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(lib.MaxValue));
         }
 
         [Fact]
@@ -115,18 +116,18 @@ namespace UnitTestColorBarLib
 
             Assert.NotNull(lib);
 
-            Assert.Equal(Color.FromArgb(0, 0, 0), lib.GetRGBColor(-10));
+            Assert.Equal(Color.FromArgb(0, 0, 0), lib.GetRGBColor(-100));
+            Assert.Equal(Color.FromArgb(0, 0, 0), lib.GetRGBColor(-1));
+            Assert.Equal(Color.FromArgb(0, 0, 0), lib.GetRGBColor(0));
             Assert.Equal(Color.FromArgb(10, 10, 10), lib.GetRGBColor(10));
             Assert.Equal(Color.FromArgb(50, 50, 50), lib.GetRGBColor(50));
-            // TODO Ç»Ç∫1Ç∏Ç¬à·Ç§ÇÃÇ©åüì¢ÇµÇΩï˚Ç™ó«Ç¢Ç©Ç‡
-            Assert.Equal(Color.FromArgb(99, 99, 99), lib.GetRGBColor(100));
-            Assert.Equal(Color.FromArgb(149, 149, 149), lib.GetRGBColor(150));
-            Assert.Equal(Color.FromArgb(199, 199, 199), lib.GetRGBColor(200));
-            Assert.Equal(Color.FromArgb(249, 249, 249), lib.GetRGBColor(250));
-            Assert.Equal(Color.FromArgb(254, 254, 254), lib.GetRGBColor(255));
-            // TODO ç≈ëÂílÇ™254Ç»ÇÃÇÕóùâÇ≈Ç´ÇƒÇ¢Ç»Ç¢
-            Assert.Equal(Color.FromArgb(254, 254, 254), lib.GetRGBColor(260));
-            Assert.Equal(Color.FromArgb(254, 254, 254), lib.GetRGBColor(500));
+            Assert.Equal(Color.FromArgb(100, 100, 100), lib.GetRGBColor(100));
+            Assert.Equal(Color.FromArgb(150, 150, 150), lib.GetRGBColor(150));
+            Assert.Equal(Color.FromArgb(200, 200, 200), lib.GetRGBColor(200));
+            Assert.Equal(Color.FromArgb(250, 250, 250), lib.GetRGBColor(250));
+            Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(255));
+            Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(256));
+            Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(300));
         }
 
         [Fact]
@@ -152,6 +153,23 @@ namespace UnitTestColorBarLib
             Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(250));
             Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(255));
             Assert.Equal(Color.FromArgb(255, 255, 255), lib.GetRGBColor(300));
+        }
+
+        [Fact]
+        public void GetRGBColor4()
+        {
+            List<string> args = new()
+            {
+                "#FF0000",
+                "#0000FF",
+            };
+            ColorBarPalette lib = new(args);
+
+            Assert.NotNull(lib);
+
+            Assert.Equal(Color.FromArgb(255, 0, 0), lib.GetRGBColor(lib.MinValue));
+            Assert.Equal(Color.FromArgb(0, 255, 0), lib.GetRGBColor(lib.MaxValue / 2));
+            Assert.Equal(Color.FromArgb(0, 0, 255), lib.GetRGBColor(lib.MaxValue));
         }
     }
 }

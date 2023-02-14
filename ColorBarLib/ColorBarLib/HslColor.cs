@@ -270,9 +270,56 @@ namespace ColorBarLib
                 }
             }
 
-            return Color.FromArgb((int)Math.Round(r1 * 255f, MidpointRounding.AwayFromZero),
-                                  (int)Math.Round(g1 * 255f, MidpointRounding.AwayFromZero),
-                                  (int)Math.Round(b1 * 255f, MidpointRounding.AwayFromZero));
+            return Color.FromArgb(GetIntValue(r1 * 255f),
+                                  GetIntValue(g1 * 255f),
+                                  GetIntValue(b1 * 255f));
+        }
+
+        /// <summary>
+        /// 小数点以下を全て四捨五入し正数を取得します。
+        /// </summary>
+        /// <param name="value">正数への変換元データ</param>
+        /// <returns>四捨五入した正数値</returns>
+        public static int GetIntValue(double value)
+        {
+            return GetIntValue(Convert.ToDecimal(value));
+        }
+
+        /// <summary>
+        /// 小数点以下を全て四捨五入し正数を取得します。
+        /// </summary>
+        /// <param name="value">正数への変換元データ</param>
+        /// <returns>四捨五入した正数値</returns>
+        public static int GetIntValue(decimal value)
+        {
+            int length = GetDecimalLength(value);
+
+            decimal result = value;
+            for (int i = length; 0 <= i; i--)
+            {
+                result = Math.Round(result, MidpointRounding.AwayFromZero);
+            }
+
+            return Convert.ToInt32(result);
+        }
+
+        /// <summary>
+        /// 小数点以下の桁数を取得するFunction
+        /// </summary>
+        /// <param name="value">小数値</param>
+        /// <returns>桁数</returns>
+        public static int GetDecimalLength(decimal value)
+        {
+            string valStr = value.ToString()!.TrimEnd('0');
+            int idx = valStr.IndexOf('.');
+
+            int result = 0;
+            if (idx != -1)
+            {
+                result = valStr.Substring(idx + 1).Length;
+            }
+
+            return result;
         }
 
         /// <inheritdoc/>
