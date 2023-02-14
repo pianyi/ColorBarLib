@@ -53,7 +53,7 @@ namespace ColorBarLib
         /// <param name="colorRGBStringList">カラーパレットデータ</param>
         private void CreateColorBarData(List<string> colorRGBStringList)
         {
-            if (colorRGBStringList.Count <= 0)
+            if (colorRGBStringList == null || colorRGBStringList.Count <= 0)
             {
                 // カラー指定がない場合は処理しない
                 return;
@@ -61,6 +61,12 @@ namespace ColorBarLib
 
             // 文字列のRGBをHslリストに変換する
             List<HslColor> colorHslList = HslColor.GetHslList(colorRGBStringList);
+            if (colorHslList == null || colorHslList.Count <= 0)
+            {
+                // 変換後のデータが無い場合は処理しない
+                return;
+            }
+
             int area = (int)Math.Ceiling(360.0 / (colorHslList.Count - 1));
 
             int areaIndex = 0;
