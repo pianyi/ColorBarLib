@@ -1,5 +1,6 @@
 # ColorBarLib
 C# で カラーバーを作成するためのカラーパレットを作成するライブラリ
+一般的に言う HeatMap (ヒートマップ) と同じだと思われます。
 
 ## ビルド環境
 - Visual Studio 2022 Community
