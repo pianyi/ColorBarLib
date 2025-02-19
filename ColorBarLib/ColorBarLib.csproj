@@ -10,6 +10,21 @@
     <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   
+  <!-- NuGet情報 -->
+  <PropertyGroup>
+    <PackageId>ColorBarLibrary</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>pianyi</Authors>
+    <Description>HeatMap(ColorBar) を作成するためのライブラリです。</Description>
+    <PackageTags>csharp, library, heatmap, ColorBar, visualization</PackageTags>
+    <PackageProjectUrl>https://github.com/pianyi/ColorBarLib</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pianyi/ColorBarLib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+  </PropertyGroup>
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
