@@ -1,19 +1,23 @@
 # ColorBarLib
-C# で カラーバーを作成するためのカラーパレットを作成するライブラリ
+C# で カラーバー(ColorBar/HeatMap)を作成するためのカラーパレットを作成するライブラリ
 
 ## ビルド環境
 - Visual Studio 2022 Community
-- .net6.0-windows
+- .net standard2.1 / .net6.0 / .net8.0
+- 画面は「.net6.0-windows」にて動作を確認しています。
 
 ## 他プロジェクトで利用する場合
 １．
 - Release でビルドする
-- ColorBarLib\bin\Release\net6.0-windows\ColorBarLib.dll を自分の開発環境で読み込む
+- ColorBarLib\bin\Release\【対応フォルダ】\ColorBarLib.dll を自分の開発環境で読み込む
 
 ２．
 - 「ColorBarLib」フォルダを自分の開発環境にコピーする
 - ColorBarLib.csproj を自分の開発環境に取り込む
 - 別プロジェクトからプロジェクト参照する
+
+３．
+- NuGet で探す https://www.nuget.org/packages/ColorBarLibrary/
 
 ## 使い方
 C#:グレースケール
