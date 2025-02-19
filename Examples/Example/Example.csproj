@@ -4,13 +4,16 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <IsPackable>false</IsPackable>
     <AssemblyVersion>0.0.4.0</AssemblyVersion>
     <FileVersion>0.0.4.0</FileVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
-  <ItemGroup>
+  
+    <ItemGroup>
     <ProjectReference Include="..\Example.Core\Example.Core.csproj" />
     <ProjectReference Include="..\Modules\Example.Modules.ColorBarPalletsDialog\Example.Modules.ColorBarPalettesDialog.csproj" />
     <ProjectReference Include="..\Modules\Example.Modules.ModuleName\Example.Modules.ModuleName.csproj" />

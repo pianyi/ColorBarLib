@@ -1,14 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFrameworks>netstandard2.1;net6.0;net8.0;</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <IsPublishable>True</IsPublishable>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <SignAssembly>False</SignAssembly>
+  </PropertyGroup>
+  
+  <!-- NuGet情報 -->
+  <PropertyGroup>
+    <PackageId>ColorBarLibrary</PackageId>
+    <Version>1.1.1</Version>
+    <Authors>pianyi</Authors>
+    <Description>HeatMap(ColorBar) を作成するためのライブラリです。</Description>
+    <PackageTags>csharp, library, heatmap, ColorBar, visualization</PackageTags>
+    <PackageProjectUrl>https://github.com/pianyi/ColorBarLib</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pianyi/ColorBarLib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
