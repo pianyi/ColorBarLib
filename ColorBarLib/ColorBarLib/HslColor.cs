@@ -60,7 +60,7 @@ namespace ColorBarLib
         /// <returns>HSLColorクラスのリスト</returns>
         public static List<HslColor> GetHslList(List<string> rgbList)
         {
-            List<HslColor> colorHslList = new();
+            List<HslColor> colorHslList = new List<HslColor>();
             foreach (var color in rgbList)
             {
                 var trimmedColor = color.Trim();

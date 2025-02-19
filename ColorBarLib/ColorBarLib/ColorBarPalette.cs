@@ -12,7 +12,7 @@ namespace ColorBarLib
         /// <summary>
         /// カラー表示時のカラーパターン
         /// </summary>
-        private readonly List<Color> _colorPattern = new();
+        private readonly List<Color> _colorPattern = new List<Color>();
 
         /// <summary>
         /// カラーバーパレットで利用する最小値を設定します
