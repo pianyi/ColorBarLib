@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace ColorBarLib
@@ -7,7 +8,7 @@ namespace ColorBarLib
     /// <summary>
     /// RGBカラーとHSLカラーを制御します
     /// </summary>
-    public class HslColor
+    public class HslColor : IEquatable<HslColor?>
     {
         /// <summary>
         /// 色相 (Hue)
@@ -61,26 +62,47 @@ namespace ColorBarLib
         public static List<HslColor> GetHslList(List<string> rgbList)
         {
             List<HslColor> colorHslList = new();
+
+            if (rgbList == null)
+            {
+                return colorHslList;
+            }
+
             foreach (var color in rgbList)
             {
-                var trimmedColor = color.Trim();
-                if (string.IsNullOrWhiteSpace(trimmedColor) || trimmedColor.Length < 6 || 7 < trimmedColor.Length)
+                try
                 {
-                    // RGBが空白 または、RGB(#RGB) の桁数ではない場合処理しない
-                    continue;
-                }
+                    var trimmedColor = color.Trim();
+                    if (string.IsNullOrWhiteSpace(trimmedColor))
+                    {
+                        // RGBが空白の場合は処理しない
+                        continue;
+                    }
+                    if ((trimmedColor.StartsWith("#") && 7 != trimmedColor.Length) ||
+                        (!trimmedColor.StartsWith("#") && 6 != trimmedColor.Length))
+                    {
+                        //  RGB(#RGB) の桁数ではない場合処理しない
+                        continue;
+                    }
 
-                var startIndex = 0;
-                if (trimmedColor.StartsWith("#"))
+                    var startIndex = 0;
+                    if (trimmedColor.StartsWith("#"))
+                    {
+                        startIndex = 1;
+                    }
+
+                    var red16 = trimmedColor.Substring(startIndex, 2);
+                    var green16 = trimmedColor.Substring(startIndex + 2, 2);
+                    var blue16 = trimmedColor.Substring(startIndex + 4, 2);
+
+                    colorHslList.Add(FromRgb(Convert.ToInt32(red16, 16), Convert.ToInt32(green16, 16), Convert.ToInt32(blue16, 16)));
+                }
+                catch (FormatException ex)
                 {
-                    startIndex = 1;
+                    // 16心数変換失敗、または色変換に失敗した時に来る
+                    Debug.Write(ex.Message);
+                    Debug.Write(ex.StackTrace);
                 }
-
-                var red16 = trimmedColor.Substring(startIndex, 2);
-                var green16 = trimmedColor.Substring(startIndex + 2, 2);
-                var blue16 = trimmedColor.Substring(startIndex + 4, 2);
-
-                colorHslList.Add(FromRgb(Convert.ToInt32(red16, 16), Convert.ToInt32(green16, 16), Convert.ToInt32(blue16, 16)));
             }
 
             return colorHslList;
@@ -248,10 +270,89 @@ namespace ColorBarLib
                 }
             }
 
-            return Color.FromArgb(
-                (int)Math.Round(r1 * 255f),
-                (int)Math.Round(g1 * 255f),
-                (int)Math.Round(b1 * 255f));
+            return Color.FromArgb(GetIntValue(r1 * 255f),
+                                  GetIntValue(g1 * 255f),
+                                  GetIntValue(b1 * 255f));
+        }
+
+        /// <summary>
+        /// 小数点以下を全て四捨五入し正数を取得します。
+        /// </summary>
+        /// <param name="value">正数への変換元データ</param>
+        /// <returns>四捨五入した正数値</returns>
+        public static int GetIntValue(double value)
+        {
+            return GetIntValue(Convert.ToDecimal(value));
+        }
+
+        /// <summary>
+        /// 小数点以下を全て四捨五入し正数を取得します。
+        /// </summary>
+        /// <param name="value">正数への変換元データ</param>
+        /// <returns>四捨五入した正数値</returns>
+        public static int GetIntValue(decimal value)
+        {
+            int length = GetDecimalLength(value);
+
+            decimal result = value;
+            for (int i = length; 0 <= i; i--)
+            {
+                result = Math.Round(result, MidpointRounding.AwayFromZero);
+            }
+
+            return Convert.ToInt32(result);
+        }
+
+        /// <summary>
+        /// 小数点以下の桁数を取得するFunction
+        /// </summary>
+        /// <param name="value">小数値</param>
+        /// <returns>桁数</returns>
+        public static int GetDecimalLength(decimal value)
+        {
+            string valStr = value.ToString()!.TrimEnd('0');
+            int idx = valStr.IndexOf('.');
+
+            int result = 0;
+            if (idx != -1)
+            {
+                result = valStr.Substring(idx + 1).Length;
+            }
+
+            return result;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as HslColor);
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(HslColor? other)
+        {
+            return other is not null &&
+                   H == other.H &&
+                   S == other.S &&
+                   L == other.L;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(H, S, L);
+        }
+
+        /// <inheritdoc/>
+        public static bool operator ==(HslColor? left, HslColor? right)
+        {
+            return EqualityComparer<HslColor>.Default.Equals(left, right);
+        }
+
+        /// <inheritdoc/>
+        public static bool operator !=(HslColor? left, HslColor? right)
+        {
+            return !(left == right);
         }
     }
 }
