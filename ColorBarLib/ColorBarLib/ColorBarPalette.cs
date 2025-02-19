@@ -40,7 +40,7 @@ namespace ColorBarLib
         /// コンストラクタ
         /// </summary>
         /// <param name="rgbList">#RRGGBB で指定された色のリスト(配列0の場合はグレースケールとなります)</param>
-        public ColorBarPalette(List<string> rgbList)
+        public ColorBarPalette(List<string>? rgbList)
             : this()
         {
             // カラーパレットの作成
@@ -51,7 +51,7 @@ namespace ColorBarLib
         /// カラーパレットの作成
         /// </summary>
         /// <param name="colorRGBStringList">カラーパレットデータ</param>
-        private void CreateColorBarData(List<string> colorRGBStringList)
+        private void CreateColorBarData(List<string>? colorRGBStringList)
         {
             if (colorRGBStringList == null || colorRGBStringList.Count <= 0)
             {

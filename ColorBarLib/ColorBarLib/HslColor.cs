@@ -59,7 +59,7 @@ namespace ColorBarLib
         /// </summary>
         /// <param name="rgbList">#XXXXXX 形式のRGB色文字列配列</param>
         /// <returns>HSLColorクラスのリスト</returns>
-        public static List<HslColor> GetHslList(List<string> rgbList)
+        public static List<HslColor> GetHslList(List<string>? rgbList)
         {
             List<HslColor> colorHslList = new List<HslColor>();
 
@@ -331,7 +331,7 @@ namespace ColorBarLib
         /// <inheritdoc/>
         public bool Equals(HslColor? other)
         {
-            return other is not null &&
+            return other != null &&
                    H == other.H &&
                    S == other.S &&
                    L == other.L;
@@ -346,7 +346,7 @@ namespace ColorBarLib
         /// <inheritdoc/>
         public static bool operator ==(HslColor? left, HslColor? right)
         {
-            return EqualityComparer<HslColor>.Default.Equals(left, right);
+            return EqualityComparer<HslColor?>.Default.Equals(left, right);
         }
 
         /// <inheritdoc/>
